@@ -2,13 +2,13 @@
 
 A firması bir E-Ticaret yazılımı geliştirmiş ve müşterilerine bunu pazarlamak istemiştir. Müşteriler ürünü ancak Cimri, N11, Google ve Facebook ile entegre çalışması koşulu ile satın alabileceklerini iletmişlerdir. Yazılım firması bunu karşılayacak geliştirmeyi yapmak istemiş ancak her platformun farklı veri formatı ile çalıştıklarını görmüştür.
 
-### Cimri verileri JSON ve XML formatlarında kabul etmektedir.
+** Cimri verileri JSON ve XML formatlarında kabul etmektedir.
 
-### N11 verileri JSON ve CSV formatlarında kabul etmektedir.
+** N11 verileri JSON ve CSV formatlarında kabul etmektedir.
 
-### Google verileri JSON formatında kabul etmektedir.
+** Google verileri JSON formatında kabul etmektedir.
 
-### Facebook verileri JSON, XML ve CSV formatlarında kabul etmektedir.
+** Facebook verileri JSON, XML ve CSV formatlarında kabul etmektedir.
 
 ## Kurulum
 
