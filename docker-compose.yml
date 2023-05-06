@@ -1,0 +1,81 @@
+version: '3.3'
+
+networks:
+    default:
+        external:
+            name: case_study_ecommerce
+
+services:
+    mysql:
+        container_name: case_study_ecommerce_db
+        image: mysql:8.0.25
+        platform: linux/amd64
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        volumes:
+            - ./docker/mysql:/var/lib/mysql:Z
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_HOST}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+
+    redis:
+        container_name: case_study_ecommerce_redis
+        image: redis
+        restart: always
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - ./docker/redis/redis.conf:/etc/redis.conf:Z
+            - ./docker/redis/tmp:/tmp:Z
+
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: case_study_ecommerce_backend
+        volumes:
+            - ./:/var/www/html/
+        tty: true # docker run -t
+        stdin_open: true # docker run -i
+        restart: always
+        env_file:
+            - .env
+        links:
+            - mysql
+            - redis
+        depends_on:
+            - mysql
+            - redis
+
+    server:
+        build:
+            context: .
+            dockerfile: Dockerfile-nginx
+        container_name: case_study_ecommerce_server
+        restart: always
+        tty: true
+        ports:
+            - '${APP_PORT:-8000}:8000'
+            
+        volumes:
+            - ./:/var/www/html/
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        links:
+            - mysql
+            - redis
+            - backend
+        depends_on:
+            - backend
+
+    # jaeger-all-in-one:
+    #     image: jaegertracing/all-in-one
+    #     environment:
+    #         - JAEGER_DISABLED=true
+    #     ports:
+    #         - 16687:16686
+    #         - 6832:6831/udp
+    #         - 14268
+    #         - 14250
