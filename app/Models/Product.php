@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "name", 
+        "slug",
+        "price",
+        "category",
+        "description",
+        "image"
+    ];
+
+    protected $casts = [
+        "price" => "float",
+        "created_at" => "datetime"
+    ];
+
+    protected $hidden = [
+        "deleted_at"
+    ];
+    
 }

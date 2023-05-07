@@ -16,5 +16,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-./docker/mysql
-./docker/redis/tmp
+docker/mysql
+docker/redis/tmp

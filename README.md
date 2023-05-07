@@ -29,14 +29,26 @@ Windows İşletim sistemlerinde aşağıda ki komutları sırasıyla çalıştı
     docker exec -it case_study_ecommerce_backend composer install
 ```
 
+Kurulum tamamlandıktan sonra container içerisinde girip migrate komutu çalışıtırın. 
+Bu aşama ile örnek product veri girişini yapılması sağlanır.
+
+```sh
+    make bash
+    php artisan migrate:fresh --seed
+```
+
 
 ## Dökümantasyon
 
-Endpointleri listelemek için 
+Endpointleri listelemek ve test etmek için 
 
 http://localhost:8000/request-docs/ adresini ziyaret edin.
 
+Open API 3.0 Json -> http://localhost:8000/request-docs/api?openapi=true
 
-## License
+Postman Collection : E-Commerce.postman_collection.json
+
+
+## Lisans
 
 Bu Case Study SSTTek adına açık kaynaklı olarak hazırlanmıştır ve [MIT license](https://opensource.org/licenses/MIT). haklarına sahiptir.

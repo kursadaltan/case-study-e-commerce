@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -43,8 +47,35 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->reportable(function (Request $request, Throwable $e) {
+            return $this->render ($request, $e);
         });
+    }
+
+    public function render($request, Exception|Throwable $e): JsonResponse
+    {
+        // if (env('APP_ENV') == 'local') {
+        //     dd($e);
+        // }
+        
+        switch (true) {
+            case ($e instanceof ValidationException):
+                $message = __('validation.failed');
+                $code = 403;
+                $errors = $e->validator->errors()->toArray();
+                break;
+
+            default:
+                $message = $e->getMessage();
+                $code = $e->getCode() ?? 500;
+                $errors = [];
+                break;
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => $message,
+            'errors' => $errors,
+        ], $code);
     }
 }

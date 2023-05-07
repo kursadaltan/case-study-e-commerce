@@ -3,6 +3,7 @@ install:
 	php artisan key:generate || true
 	$(MAKE) build
 	$(MAKE) sh composer install
+	sleep 10
 
 bash:
 	docker exec -it case_study_ecommerce_backend sh

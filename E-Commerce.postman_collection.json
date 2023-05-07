@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "06f284d9-ee2e-4cf9-a7a1-3e9165d201a8",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20838996"
+	},
+	"item": [
+		{
+			"name": "Product Export",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{E_COMMERCE_URL}}/api/v1/products?platform=google&format=json",
+					"host": [
+						"{{E_COMMERCE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "platform",
+							"value": "google"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "category",
+							"value": "shirt",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "E_COMMERCE_URL",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
