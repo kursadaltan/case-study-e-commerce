@@ -37,7 +37,6 @@ Bu aşama ile örnek product veri girişini yapılması sağlanır.
     php artisan migrate:fresh --seed
 ```
 
-
 ## Dökümantasyon
 
 Endpointleri listelemek ve test etmek için 

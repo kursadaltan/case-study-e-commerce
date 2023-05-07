@@ -1,9 +1,7 @@
 install:
 	cp .env.example .env
-	php artisan key:generate || true
 	$(MAKE) build
-	$(MAKE) sh composer install
-	sleep 10
+	sleep 30
 
 bash:
 	docker exec -it case_study_ecommerce_backend sh
