@@ -48,6 +48,8 @@ Open API 3.0 Json -> http://localhost:8000/request-docs/api?openapi=true
 
 Postman Collection : E-Commerce.postman_collection.json
 
+SQL Dosyası : products.sql
+
 
 ## Lisans
 
