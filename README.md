@@ -48,8 +48,3 @@ Open API 3.0 Json -> http://localhost:8000/request-docs/api?openapi=true
 Postman Collection : E-Commerce.postman_collection.json
 
 SQL Dosyası : products.sql
-
-
-## Lisans
-
-Bu Case Study SSTTek adına açık kaynaklı olarak hazırlanmıştır ve [MIT license](https://opensource.org/licenses/MIT). haklarına sahiptir.
